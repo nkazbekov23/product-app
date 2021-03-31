@@ -1,0 +1,20 @@
+server:
+  port: 8085
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-admin-password: pass123
+  jpa:
+    show-sql: true
+  profiles:
+    active: ${PROFILE:dev}
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://127.0.0.1:8081}
+  cloud:
+    config:
+      label: ${CONFIG_BRANCH:master}
+      username: ${SERVER_USER:product-username}
+      password: ${SERVER_PASSWORD:product-pass}
